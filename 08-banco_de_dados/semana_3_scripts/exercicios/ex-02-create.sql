@@ -16,14 +16,14 @@ CREATE TABLE usuario (
   id INT NOT NULL AUTO_INCREMENT,
   nome_usuario VARCHAR(45) NOT NULL,
   senha VARCHAR(15) NOT NULL,
-  e_mail VARCHAR(20) NOT NULL,
+  e_mail VARCHAR(45) NOT NULL,
   id_pessoa INT NOT NULL,
   PRIMARY KEY (id, id_pessoa),
   FOREIGN KEY (id_pessoa) REFERENCES pessoa (id)
 );
 
 CREATE TABLE local(
-  id INT NOT NULL,
+  id INT NOT NULL AUTO_INCREMENT,
   nome_ginasio VARCHAR(45) NOT NULL,
   rua VARCHAR(45) NOT NULL,
   numero CHAR(5) NOT NULL,
@@ -66,7 +66,6 @@ CREATE TABLE partida (
   data_inicio DATETIME(6) NOT NULL,
   id_equipe_casa INT NOT NULL,
   id_equipe_visitante INT NOT NULL,
-  local VARCHAR(45) NOT NULL,
   id_local INT NOT NULL,
   PRIMARY KEY (id, id_equipe_casa, id_equipe_visitante, id_local),
   FOREIGN KEY (id_equipe_casa) REFERENCES equipe (id),

@@ -12,6 +12,9 @@ CREATE TABLE login (
   PRIMARY KEY (id)
 );
 
+
+
+
 CREATE TABLE cliente (
   id INT NOT NULL AUTO_INCREMENT,
   nome VARCHAR(45) NOT NULL,
