@@ -1,6 +1,6 @@
-DROP SCHEMA IF EXISTS ex_3;
+DROP DATABASE IF EXISTS ex_3;
 
-CREATE SCHEMA IF NOT EXISTS ex_3;
+CREATE DATABASE IF NOT EXISTS ex_3;
 
 USE ex_3;
 
@@ -197,6 +197,9 @@ CREATE TABLE participante (
   PRIMARY KEY (id, id_sexo),
   FOREIGN KEY (id_sexo) REFERENCES sexo (id)
 );
+
+
+
 
 CREATE TABLE tipo_participante (
   id INT NOT NULL AUTO_INCREMENT,

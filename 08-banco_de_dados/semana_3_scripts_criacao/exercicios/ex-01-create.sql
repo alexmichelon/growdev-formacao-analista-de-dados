@@ -1,6 +1,6 @@
-DROP SCHEMA IF EXISTS ex_1;
+DROP DATABASE IF EXISTS ex_1;
 
-CREATE SCHEMA IF NOT EXISTS ex_1;
+CREATE DATABASE IF NOT EXISTS ex_1;
 
 USE ex_1;
 
@@ -11,9 +11,6 @@ CREATE TABLE login (
   e_mail VARCHAR(45) NOT NULL,
   PRIMARY KEY (id)
 );
-
-
-
 
 CREATE TABLE cliente (
   id INT NOT NULL AUTO_INCREMENT,
@@ -102,6 +99,8 @@ CREATE TABLE compra_brinde_cliente (
   FOREIGN KEY (id_cliente) REFERENCES cliente (id),  
   FOREIGN KEY (id_compra) REFERENCES compra (id)
 );
+
+
 
 CREATE TABLE entrega (
   id INT NOT NULL AUTO_INCREMENT,
