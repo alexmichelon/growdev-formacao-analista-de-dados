@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS forma_pagamento (
 );
 
 CREATE TABLE plano (
-  id INT NOT NULL,
+  id INT NOT NULL AUTO_INCREMENT,
   descricao VARCHAR(45) NOT NULL,
   numero_telas VARCHAR(45) NOT NULL,
   tipo_resolucao VARCHAR(45) NOT NULL,
@@ -22,7 +22,7 @@ CREATE TABLE plano (
 CREATE TABLE conta (
   id INT NOT NULL AUTO_INCREMENT,
   data_inicio DATE NOT NULL,
-  status CHAR(1) BINARY NOT NULL,
+  status_conta CHAR(1) BINARY NOT NULL,
   dia_vencimento CHAR(2) NOT NULL,
   id_forma_pagamento INT NOT NULL,
   id_plano INT NOT NULL,
@@ -32,9 +32,9 @@ CREATE TABLE conta (
 );
 
 CREATE TABLE regiao (
-  id INT NOT NULL,
+  id INT NOT NULL AUTO_INCREMENT,
   cidade VARCHAR(45) NOT NULL,
-  estado VARCHAR(45) NOT NULL,
+  estado CHAR(2) NOT NULL,
   pais VARCHAR(45) NOT NULL,
   PRIMARY KEY (id)
 );
@@ -68,9 +68,8 @@ CREATE TABLE usuario (
   nome VARCHAR(60) NOT NULL,
   data_nascimento DATE NOT NULL,
   nome_usuario VARCHAR(20) NOT NULL,
-  e_mail VARCHAR(20) NOT NULL,
+  e_mail VARCHAR(45) NOT NULL,
   senha VARCHAR(45) NULL,
-  usuariocol VARCHAR(45) NULL,
   id_regiao INT NOT NULL,
   id_sexo INT NOT NULL,
   id_religiao INT NOT NULL,
@@ -85,7 +84,7 @@ CREATE TABLE usuario (
 );
 
 CREATE TABLE plataforma (
-  id INT NOT NULL,
+  id INT NOT NULL AUTO_INCREMENT,
   descricao VARCHAR(45) NOT NULL,
   PRIMARY KEY (id)
 );
@@ -99,7 +98,7 @@ CREATE TABLE plataforma_plano (
 );
 
 CREATE TABLE dispositivo (
-  id INT NOT NULL,
+  id INT NOT NULL AUTO_INCREMENT,
   descricao VARCHAR(45) NOT NULL,
   endereco_mac VARCHAR(17) NOT NULL,
   id_plataforma INT NOT NULL,
@@ -116,7 +115,7 @@ CREATE TABLE dispositivo_conta (
 );
 
 CREATE TABLE perfil (
-  id INT NOT NULL,
+  id INT NOT NULL AUTO_INCREMENT,
   id_usuario INT NOT NULL,
   id_conta INT NOT NULL,
   descricao VARCHAR(45) NOT NULL,
@@ -126,7 +125,7 @@ CREATE TABLE perfil (
 );
 
 CREATE TABLE acesso (
-  id INT NOT NULL,
+  id INT NOT NULL AUTO_INCREMENT,
   data_acesso DATETIME(6) NOT NULL,
   data_saida DATETIME(6) NOT NULL,
   id_dispositivo INT NOT NULL,
@@ -136,8 +135,6 @@ CREATE TABLE acesso (
   FOREIGN KEY (id_perfil) REFERENCES perfil (id)
 );
 
-
-
 CREATE TABLE classificacao (
   id INT NOT NULL AUTO_INCREMENT,
   descricao VARCHAR(45) NOT NULL,
@@ -145,12 +142,11 @@ CREATE TABLE classificacao (
 );
 
 CREATE TABLE midia (
-  id INT NOT NULL,
+  id INT NOT NULL AUTO_INCREMENT,
   titulo VARCHAR(100) NOT NULL,
   tempo_duracao TIME NOT NULL,
   data_disponibilizacao DATE NOT NULL,
   ativo CHAR(1) BINARY NOT NULL,
-  classificacao VARCHAR(15) NOT NULL,
   data_lancamento DATE NOT NULL,
   resumo VARCHAR(2000) NOT NULL,
   id_classificacao INT NOT NULL,
@@ -159,7 +155,7 @@ CREATE TABLE midia (
 );
 
 CREATE TABLE midia_assistida (
-  id INT NOT NULL,
+  id INT NOT NULL AUTO_INCREMENT,
   data_assistida DATETIME(6) NOT NULL,
   satisfacao VARCHAR(15) NOT NULL,
   id_midia INT NOT NULL,
@@ -168,7 +164,7 @@ CREATE TABLE midia_assistida (
 );
 
 CREATE TABLE midia_assistindo (
-  id INT NOT NULL,
+  id INT NOT NULL AUTO_INCREMENT,
   data_assistindo DATETIME(6) NOT NULL,
   minuto_parada TIME NOT NULL,
   id_midia INT NOT NULL,
@@ -209,7 +205,7 @@ CREATE TABLE tipo_participante (
 );
 
 CREATE TABLE elenco (
-  id INT NOT NULL,
+  id INT NOT NULL AUTO_INCREMENT,
   id_tipo_participante INT NOT NULL,
   id_participante INT NOT NULL,
   id_midia INT NOT NULL,
@@ -237,7 +233,7 @@ CREATE TABLE genero (
   PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS enquadramento_midia (
+CREATE TABLE enquadramento_midia (
   id_midia INT NOT NULL,
   id_categoria INT NOT NULL,
   id_subcategoria INT NOT NULL,
