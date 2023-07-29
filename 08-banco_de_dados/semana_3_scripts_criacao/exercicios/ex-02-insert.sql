@@ -55,7 +55,7 @@ INSERT INTO posicao (descricao) VALUES ('Ala');
 INSERT INTO posicao (descricao) VALUES ('Pivo');
 INSERT INTO posicao (descricao) VALUES ('Treinador');
 
-INSERT INTO partida (data_inicio, id_equipe_casa, id_equipe_visitante, id_local) VALUES ('2023-07-19 20:00:00', 1, 2, 1);
+INSERT INTO partida (data_inicio, id_equipe_casa, id_equipe_visitante, id_local) VALUES ('2023-07-19 20:00:00', 1, 2, 1, 12, 11);
 
 INSERT INTO posicao_participante (id_participante, id_posicao) VALUES (1, 1);
 INSERT INTO posicao_participante (id_participante, id_posicao) VALUES (2, 1);

@@ -68,6 +68,8 @@ CREATE TABLE partida (
   id_equipe_casa INT NOT NULL,
   id_equipe_visitante INT NOT NULL,
   id_local INT NOT NULL,
+  pontuacao_equipe_casa INT NOT NULL,
+  pontuacao_equipe_visitante INT NOT NULL
   PRIMARY KEY (id, id_equipe_casa, id_equipe_visitante, id_local),
   FOREIGN KEY (id_equipe_casa) REFERENCES equipe (id),
   FOREIGN KEY (id_equipe_visitante) REFERENCES equipe (id),
