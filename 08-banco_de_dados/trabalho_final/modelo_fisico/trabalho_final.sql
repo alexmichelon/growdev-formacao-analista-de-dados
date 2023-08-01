@@ -141,11 +141,12 @@ CREATE TABLE trabalho_final_db.endereco_pessoa_fisica (
 -- Informações de referencia a enredecos de uma pessoa juridica, supondo de que esta podera possuir mais de um endereco cadastrado
 -- -----------------------------------------------------
 CREATE TABLE trabalho_final_db.endereco_pessoa_juridica (
+  id INT NOT NULL AUTO_INCREMENT,
   pessoa_juridica_id INT NOT NULL,
   endereco_id INT NOT NULL,
   tipo_endereco_id INT NOT NULL,
   preferencial CHAR(1) BINARY NOT NULL,
-  PRIMARY KEY (pessoa_juridica_id, endereco_id, tipo_endereco_id),
+  PRIMARY KEY (id, pessoa_juridica_id, endereco_id, tipo_endereco_id),
   INDEX fk_endereco_has_pessoa_juridica_pessoa_juridica1_idx (pessoa_juridica_id ASC) VISIBLE,
   INDEX fk_endereco_has_pessoa_juridica_endereco1_idx (endereco_id ASC) VISIBLE,
   INDEX fk_endereco_has_pessoa_juridica_tipo_endereco1_idx (tipo_endereco_id ASC) VISIBLE,
@@ -304,7 +305,7 @@ CREATE TABLE trabalho_final_db.item_compra (
 
 -- -----------------------------------------------------
 -- Table trabalho_final_db.tamanho
--- Inforcoes inerentes ao cadastro do tamanho das camisetas (P, M, G, XL, L)
+-- Informacoes inerentes ao cadastro do tamanho das camisetas (P, M, G, XL, L)
 -- -----------------------------------------------------
 CREATE TABLE trabalho_final_db.tamanho (
   id INT NOT NULL AUTO_INCREMENT,
@@ -314,7 +315,7 @@ CREATE TABLE trabalho_final_db.tamanho (
 
 -- -----------------------------------------------------
 -- Table trabalho_final_db.cor
--- Inforcoes inerentes ao cadastro de cores (camisetas e materia prima)
+-- Informacoes inerentes ao cadastro de cores (camisetas e materia prima)
 -- -----------------------------------------------------
 CREATE TABLE trabalho_final_db.cor (
   id INT NOT NULL AUTO_INCREMENT,
@@ -324,7 +325,7 @@ CREATE TABLE trabalho_final_db.cor (
 
 -- -----------------------------------------------------
 -- Table trabalho_final_db.medida
--- Inforcoes inerentes ao cadastro de medidas (ex.: torax, 50cm)
+-- Informacoes inerentes ao cadastro de medidas (ex.: torax, 50cm)
 -- -----------------------------------------------------
 CREATE TABLE trabalho_final_db.medida (
   id INT NOT NULL AUTO_INCREMENT,
@@ -335,7 +336,7 @@ CREATE TABLE trabalho_final_db.medida (
 
 -- -----------------------------------------------------
 -- Table trabalho_final_db.medida_tamanho
--- Inforcoes inerentes ao cadastro das medidas relacionadas a cada tamanho de camisetas
+-- Informacoes inerentes ao cadastro das medidas relacionadas a cada tamanho de camisetas
 -- -----------------------------------------------------
 CREATE TABLE trabalho_final_db.medida_tamanho (
   id VARCHAR(45) NOT NULL,
@@ -358,7 +359,7 @@ CREATE TABLE trabalho_final_db.medida_tamanho (
 
 -- -----------------------------------------------------
 -- Table trabalho_final_db.camiseta
--- Inforcoes inerentes ao cadastro de camisetas e sua identificação (modelo)
+-- Informacoes inerentes ao cadastro de camisetas e sua identificação (modelo)
 -- -----------------------------------------------------
 CREATE TABLE trabalho_final_db.camiseta (
   id INT NOT NULL AUTO_INCREMENT,
@@ -368,7 +369,7 @@ CREATE TABLE trabalho_final_db.camiseta (
 
 -- -----------------------------------------------------
 -- Table trabalho_final_db.materia_prima_camiseta
--- Inforcoes inerentes ao cadastro das materias primas de cada camiseta, ou seja, os materiais necessários para confeccionar cada camiseta considerando seu tamanho
+-- Informacoes inerentes ao cadastro das materias primas de cada camiseta, ou seja, os materiais necessários para confeccionar cada camiseta considerando seu tamanho
 -- -----------------------------------------------------
 CREATE TABLE trabalho_final_db.materia_prima_camiseta (
   camiseta_id INT NOT NULL,
@@ -398,7 +399,7 @@ CREATE TABLE trabalho_final_db.materia_prima_camiseta (
 
 -- -----------------------------------------------------
 -- Table trabalho_final_db.cor_camiseta
--- Inforcoes inerentes ao cadastro das cores existentes na camiseta
+-- Informacoes inerentes ao cadastro das cores existentes na camiseta
 -- -----------------------------------------------------
 CREATE TABLE trabalho_final_db.cor_camiseta (
   camiseta_id INT NOT NULL,
@@ -420,7 +421,7 @@ CREATE TABLE trabalho_final_db.cor_camiseta (
 
 -- -----------------------------------------------------
 -- Table trabalho_final_db.tamanho_camiseta
--- Inforcoes inerentes aos tamanhos que cada camiseta pode possui 
+-- Informacoes inerentes aos tamanhos que cada camiseta pode possui 
 -- -----------------------------------------------------
 CREATE TABLE trabalho_final_db.tamanho_camiseta (
   camiseta_id INT NOT NULL,
@@ -470,7 +471,7 @@ CREATE TABLE trabalho_final_db.item_venda (
 
 -- -----------------------------------------------------
 -- Table trabalho_final_db.materia_prima_cor
--- Inforcoes inerentes ao cadastro da cor da materia prima (por exemplo cor para o tipo de materia prima "tinta" )
+-- Informacoes inerentes ao cadastro da cor da materia prima (por exemplo cor para o tipo de materia prima "tinta" )
 -- -----------------------------------------------------
 CREATE TABLE trabalho_final_db.materia_prima_cor (
   materia_prima_id INT NOT NULL,
@@ -492,7 +493,7 @@ CREATE TABLE trabalho_final_db.materia_prima_cor (
 
 -- -----------------------------------------------------
 -- Table trabalho_final_db.entrega
--- Inforcoes inerentes ao cadastro das entregas da transacao efetuada, poderá haver mais de uma entrega para cada transacao
+-- Informacoes inerentes ao cadastro das entregas da transacao efetuada, poderá haver mais de uma entrega para cada transacao
 -- -----------------------------------------------------
 CREATE TABLE trabalho_final_db.entrega (
   id INT NOT NULL AUTO_INCREMENT,
@@ -514,7 +515,7 @@ CREATE TABLE trabalho_final_db.entrega (
 
 -- -----------------------------------------------------
 -- Table trabalho_final_db.telefone
--- Inforcoes inerentes ao cadastro do tipo de contato e o número do contato para cada pessoa
+-- Informacoes inerentes ao cadastro do tipo de contato e o número do contato para cada pessoa
 -- -----------------------------------------------------
 CREATE TABLE trabalho_final_db.telefone (
   id INT NOT NULL AUTO_INCREMENT,
@@ -527,6 +528,29 @@ CREATE TABLE trabalho_final_db.telefone (
   CONSTRAINT fk_telefone_pessoa1
     FOREIGN KEY (pessoa_id)
     REFERENCES trabalho_final_db.pessoa (id)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+);
+
+-- -----------------------------------------------------
+-- Table trabalho_final_db.endereco_entrega
+-- Informacoes inerentes ao endereco de cada entrega
+-- -----------------------------------------------------
+CREATE TABLE trabalho_final_db.endereco_entrega (
+  id INT NOT NULL AUTO_INCREMENT,
+  endereco_pessoa_juridica_id INT NOT NULL,
+  entrega_id INT NOT NULL,
+  PRIMARY KEY (id, endereco_pessoa_juridica_id, entrega_id),
+  INDEX fk_endereco_pessoa_juridica_has_entrega_entrega1_idx (entrega_id ASC) VISIBLE,
+  INDEX fk_endereco_pessoa_juridica_has_entrega_endereco_pessoa_jur_idx (endereco_pessoa_juridica_id ASC) VISIBLE,
+  CONSTRAINT fk_endereco_pessoa_juridica_has_entrega_endereco_pessoa_jurid1
+    FOREIGN KEY (endereco_pessoa_juridica_id)
+    REFERENCES trabalho_final_db.endereco_pessoa_juridica (id)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT fk_endereco_pessoa_juridica_has_entrega_entrega1
+    FOREIGN KEY (entrega_id)
+    REFERENCES trabalho_final_db.entrega (id)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
 );
