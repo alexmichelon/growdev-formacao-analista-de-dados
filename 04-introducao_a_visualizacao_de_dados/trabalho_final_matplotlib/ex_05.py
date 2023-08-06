@@ -36,7 +36,7 @@ from functions_utils import open_csv_file, convert_data_dict_list
 import matplotlib.pyplot as plt
 import numpy as np
 
-header, data = open_csv_file('alunos.csv', 'r')
+header, data = open_csv_file('dados/alunos.csv', 'r')
 
 list_keys = {'nome': str, 'ano': int, 'escola': str, 'nota_semestre_1': float, 'nota_semestre_2': float, 'faltas': int, 'nota_exame': float, 'monitoria': bool}
 
