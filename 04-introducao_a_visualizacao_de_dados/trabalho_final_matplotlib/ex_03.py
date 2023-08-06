@@ -35,7 +35,7 @@ faltas. O gráfico deverá ser então conforme o gráfico a seguir.
 from functions_utils import open_csv_file, convert_data_dict_list, list_dict_group_by_values_two_keys, list_dict_values_key, list_dict_count_values_key
 import matplotlib.pyplot as plt
 
-header, data = open_csv_file('alunos.csv', 'r')
+header, data = open_csv_file('dados/alunos.csv', 'r')
 
 list_keys = {'nome': str, 'ano': int, 'escola': str, 'nota_semestre_1': float, 'nota_semestre_2': float, 'faltas': int, 'nota_exame': float, 'monitoria': bool}
 
