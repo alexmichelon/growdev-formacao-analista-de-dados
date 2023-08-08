@@ -1,3 +1,9 @@
+'''
+Permite selecionar pedaço de uma imagem e obter parâmetros HSV para segmentação da imagem
+Fonte: https://offsouza.medium.com/segmentando-objetos-pela-cor-opencv-487d5181b473
+       https://github.com/offsouza/color-segmentation 
+'''
+
 import cv2
 import numpy as np
 import argparse
