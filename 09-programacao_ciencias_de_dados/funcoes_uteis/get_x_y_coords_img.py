@@ -32,7 +32,7 @@ def click_event(event, x, y, flags, params):
 if __name__=="__main__": 
   
     #alterar conforme imagem desejada
-    img = cv2.imread('coloque PATH da imagem', 1) 
+    img = cv2.imread('mapa_brasil_regioes.jpeg', 1) 
     #padronizando tamanho da figura a ser aberta
     img = cv2.resize(img, (600,600))
     cv2.imshow('image', img)     
