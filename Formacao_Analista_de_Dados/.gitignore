@@ -1,0 +1,17 @@
+__pycache__/
+apresentacao/
+gabarito/
+versionados/
+*.pdf
+*.txt
+*.doc
+*.docx
+*.zip
+Avaliacao_Final_Growdev_MatEst.ipynb
+00-onboarding/
+0-orientacao_profissional/
+01-introducao_a_dados/
+exemplo/
+exportados/
+enviado/
+arquivo/
