@@ -56,7 +56,6 @@ Código	Descrição
 17	Não determinados / Não aplicável
 
 * Cor
-
 Código	Descrição
 0	Indígena
 2	Branca
