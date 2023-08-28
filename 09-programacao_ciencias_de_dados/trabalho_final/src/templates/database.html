@@ -1,0 +1,77 @@
+<!DOCTYPE html><html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Resultados</title>
+
+        <style>
+            body {
+                margin: 0;
+            }
+            .container {
+                width: 80%;
+                margin-left: 10%;
+            }
+            
+            /**/
+            #geral {
+                margin-block: 2%;
+            }
+            
+            /* tabela */
+            .table-result {
+                text-align: center;
+                margin: 0 auto;
+            }
+            .table-header > th {
+                background-color: CornflowerBlue;
+                padding: 0.5em;
+                width: 120px;
+            }
+            .table-data > td {
+                padding-block: 0.5em;
+            }
+            tr:hover {
+                background-color: RoyalBlue;
+                color: white;
+            }
+            /* filtro*/
+            #formulario_filtro {
+                float:left; 
+            }
+            #formulario_agrupamento {
+                float:right;
+            }
+        </style>
+
+    </head>
+    <body>
+        <div class="container">
+
+            <div id="geral">
+                <h2>Resultado</h2>
+                <span style="font-weight: bold;">Registros existentes: </span> {{ database|length }} recuperados.
+            </div>
+
+            <div id="dados">
+
+                <table class="table-result">                 
+                    <tr class="table-header">
+                        {% for column in database.columns: %}
+                        <th>{{ column }}</th>
+                        {% endfor %}
+                    </tr>                       
+                    {% for index, row in database.head(100).iterrows(): %}
+                    <tr class="table-data">                 
+                        {% for column in database.columns: %}                            
+                        <td>{{ row[column] }}</td>                            
+                        {% endfor %}
+                    </tr> 
+                    {% endfor %}                                                                         
+                </table>
+
+            </div>
+
+        </div>
+
+    </body>
+</html>

@@ -7,7 +7,7 @@ versionados/
 *.doc
 *.docx
 *.zip
-#*.csv
+*.csv
 Avaliacao_Final_Growdev_MatEst.ipynb
 00-onboarding/
 0-orientacao_profissional/
@@ -16,4 +16,4 @@ exemplo/
 exportados/
 enviado/
 imagem/
-#arquivo/
+arquivo/
