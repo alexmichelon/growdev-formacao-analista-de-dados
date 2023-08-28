@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+
+        <title>Carrega Base</title>
+
+        <style>
+            div{
+                text-align: center;
+            }                                 
+            
+            input{
+                font-size: 18px;
+                width: 30%;
+                padding: 20px 5px 5px;
+                border: bold;
+                border-radius: 4px;
+            }                 
+
+            .main_title{
+                text-align: center;
+                font-size: bold;
+            }
+
+            .setting{
+                align:center;
+            }
+        </style>
+
+    </head>
+    <body>
+        <h1 class='main_title'>Análise de Dados</h1>
+        <h2 class='main_title'>Base setada:</h2> <p style="text-align: center; font-size: 20px;">{{name_database}}</p>
+       
+        <h2 class='main_title'>Clique na opção desejada: </h2>
+        <div>
+            <form method="POST" action="/database/describe_info">
+                <div>
+                    <span>
+                        <input type="submit" value="Informações Descritivas da Base de Dados" class="submit-button"/>&nbsp;
+                    </span>    
+                </div>
+            </form>
+            <form method="POST" action="/database/search">
+                <div>
+                    <span>
+                        <input type="submit" value="Filtrar Dados da Base" class="submit-button"/>&nbsp;
+                    </span>    
+                </div>
+            </form>
+            <form method="POST" action="/database/group_by">
+                <div>
+                    <span>
+                        <input type="submit" value="Agrupar Dados da Base" class="submit-button"/>&nbsp;
+                    </span>    
+                </div>
+            </form>
+            <form method="POST" action="/database/search_group_by">
+                <div>
+                    <span>
+                        <input type="submit" value="Filtrar/Agrupar Dados da Base" class="submit-button"/>&nbsp;
+                    </span>    
+                </div>
+            </form>            
+        </div>
+    </body>
+</html>

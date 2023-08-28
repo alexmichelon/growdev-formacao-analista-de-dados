@@ -1,0 +1,169 @@
+<style>
+    .filters_search, filters_group_by{
+		display: flex;
+		flex-direction: row;
+	}
+
+    .div-form{		
+		display: inline-block;
+	}
+
+    label {
+        text-align: right-top;
+      }
+      
+</style>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+       $(function () {
+       var divContent = $('#filters_search');
+       var btn_add_field_search = $('input[data-id="1"]');
+       var i = 1;
+
+       //Ao clicar em adicionar ele cria uma linha com novos campos
+       $(btn_add_field_search).click(function () {
+           $('<div class="filter_add">\
+            <label>Coluna</label>\
+                <select name="columns[]" onchange="disabled_options(this.value)" required>\
+                    <option value="" disabled selected></option>\
+                    {% for column in database.columns: %}\
+                    <option value={{ column }}>{{column}}</option>\
+                    {% endfor %}\
+                </select>\
+                <label>Comparação</label>\
+    	        <select name="comparisions[]" required>\
+    	        	<option value="" disabled selected></option>\
+                    <option id="==" value="==">Igual</option>\
+                    <option id="!=" value="!=">Diferente</option>\
+                    <option id=">"  value=">">Maior</option>\
+                    <option id=">=" value=">=">Maior ou igual</option>\
+                    <option id="<"  value="<">Menor</option>\
+                    <option id="<=" value="<=">Menor ou igual</option>\
+                    <option id="contains" value="contains">Contém</option>\
+                    <option id="not_contains" value="not_contains">Não contém</option>\
+    	        </select>\
+                <label>Texto</label>\
+    	        <input type="text" placeholder="" name="data_search[]" required/>\
+    	        <input type="button" class="remove_added_field_search" value="-">\
+            </div>').appendTo(divContent);
+           $('#removehidden').remove();
+           i++;
+           $('<input type="hidden" name="field_amount" value="' + i + '" id="removehidden">').appendTo(divContent);
+       });
+
+       //Clicando em remover a linha é eliminada
+       $('#filters_search').on('click', '.remove_added_field_search', function () {
+           $(this).parents('.filter_add').remove();
+           i--;
+       });
+    })
+    $('#filters_search').on('click', '.reset_fields', function () {
+        $(this)[0].reset();
+    });
+    
+
+    $(function () {
+        var divContent = $('#filters_group_by');
+        var btn_add_field_group_by = $('input[data-id="2"]');
+        var x = 1;
+    
+        //Ao clicar em adicionar ele cria uma linha com novos campos
+        $(btn_add_field_group_by).click(function () {
+            $('<div class="fields_added">\
+                 <label> Agrupador:</label>\
+                 <select name="columns_group_by[]">\
+                     <option value="" disabled selected></option>\
+                     {% for column in database.columns: %}\
+                     <option value={{column}}>{{column}}</option>\
+                     {% endfor %}\
+                 </select>\
+                 <input type="button" class="remove_added_field_group_by" value="-"</div>').appendTo(divContent);
+            $('#removehidden').remove();
+            x++;
+            $('<input type="hidden" name="field_amount" value="' + x + '" id="removehidden">').appendTo(divContent);
+        });
+    
+        //Clicando em remover a linha é eliminada
+        $('#filters_group_by').on('click', '.remove_added_field_group_by', function () {
+            $(this).parents('.fields_added').remove();
+            x--;
+        });
+    });
+</script>
+
+<form method="POST" action="/database/search_group_by" target="_blank">
+    <h2>Filtros de Seleção</h2>
+    <div id="filters_search" class="div-form">
+        <label>Coluna</label> 
+        <select name="columns[]">
+            <option value="" disabled selected></option>
+            {% for column in database.columns: %}
+            <option value={{ column }}>{{column}}</option>
+            {% endfor %}
+        </select>                
+        <label>Comparação</label>
+        <select name="comparisions[]" >
+            <option value="" disabled selected></option>
+            <option id="==" value="==">Igual</option>
+            <option id="!=" value="!=">Diferente</option>
+            <option id=">"  value=">">Maior</option>
+            <option id=">=" value=">=">Maior ou igual</option>
+            <option id="<"  value="<">Menor</option>
+            <option id="<=" value="<=">Menor ou igual</option>
+            <option id="contains" value="contains">Contém</option>
+            <option id="not_contains" value="not_contains">Não contém</option>
+        </select>                    
+        <label>Texto</label>
+        <input id="text" type="text" placeholder="" name="data_search[]"/>
+        <input type="button" data-id="1" id="add_field" value="+">
+    </div>
+    <div>
+        <span>Busca: </span> {{ query }}
+    </div>
+    <h2>Filtros de Agrupamento</h2>  
+    <div id="filters_group_by">
+        <div id="form_group_by" class="div-form">
+	        <label> Agrupador:</label>
+            <select name="columns_group_by[]" >
+                <option value="" disabled selected></option>
+            {%  for column in database.columns: %}
+                <option value={{column}}>{{column}}</option>
+                {% endfor %}
+            </select>
+            <input type="button" data-id="2" id="1" value="+"> 
+        </div>
+        <div class="div-form">
+	        <label> Numérico:</label>
+    	    <select name="column_value_type">
+    		    <option value="" disabled selected></option>
+                {% for column in numeric_columns: %}
+    		    <option value={{column}}>{{column}}</option>
+	    	    {% endfor %}
+	        </select>
+            <label for="sum">Somar</label>
+            <input type="checkbox" name="sum" id="sum"/>
+	        <label> Dado:</label>
+            <select name="value_type">
+        	    <option value="" disabled selected></option>
+	    	    <option value="mean()">Média</option>
+    		    <option value="max()" >Valor Máximo</option>
+                <option value="idxmax()" >Índice Valor Máximo</option>
+	    	    <option value="min()" >Valor Mínimo</option>
+                <option value="idxmin()" >Índice Valor Mínimo</option>
+	    	    <option value="std()" >Desvio Padrão</option>
+	        </select>
+        </div>
+        <div class="div-form">			    
+            <input type="submit" value="Aplicar Filtro" />
+        </div>
+    </div> 
+    <div>
+        <span>Busca: </span> {{ fields_text }}
+    </div>    
+    <div>
+        <span>Comando gerado: </span> {{ query_text }}
+    </div>     
+</form>
+    

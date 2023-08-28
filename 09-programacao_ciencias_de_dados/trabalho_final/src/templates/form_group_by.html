@@ -1,0 +1,92 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+ <script>
+        $(function () {
+           var divContent = $('#form_group_by');
+           var botaoAdicionar = $('input[data-id="1"]');
+           var i = 1;
+       
+           //Ao clicar em adicionar ele cria uma linha com novos campos
+           $(botaoAdicionar).click(function () {
+               $('<div class="fields_added">\
+                    <label> Agrupador:</label>\
+			        <select name="columns_group_by[]">\
+                        <option value="" disabled selected></option>\
+                        {% for column in database.columns: %}\
+				        <option value={{column}}>{{column}}</option>\
+				        {% endfor %}\
+			        </select>\
+			        <input type="button" class="remove_added_field" value="-"</div>').appendTo(divContent);
+               $('#removehidden').remove();
+               i++;
+               $('<input type="hidden" name="field_amount" value="' + i + '" id="removehidden">').appendTo(divContent);
+           });
+       
+           //Cliquando em remover a linha é eliminada
+           $('#form_group_by').on('click', '.remove_added_field', function () {
+               $(this).parents('.fields_added').remove();
+               i--;
+           });
+       });
+ </script>
+
+ <style>
+	.div-form{
+		padding: 10px 10px 10px 10px;
+		border-radius:  10px;
+		display: inline-block;
+	}
+	.filters{
+		display: flex;
+		flex-direction: row;
+	}
+    label {
+        text-align: right-top;
+      }​
+</style>
+
+ <form method="POST" action="/database/group_by">
+    <div class="filters">
+        <div id="form_group_by" class="div-form">
+	        <label> Agrupador:</label>
+            <!-- <select name="columns_group_by[]" size={{database.columns|length}} multiple required> -->
+            <select name="columns_group_by[]" required>
+                <option value="" disabled selected></option>
+            {%  for column in database.columns: %}
+                <option value={{column}}>{{column}}</option>
+                {% endfor %}
+            </select>
+            <input type="button" data-id="1" value="+"> 
+        </div>
+        <div class="div-form">
+	        <label> Numérico:</label>
+    	    <select name="column_value_type">
+    		    <option value="" disabled selected></option>
+                {% for column in numeric_columns: %}
+    		    <option value={{column}}>{{column}}</option>
+	    	    {% endfor %}
+	        </select>
+            <label for="sum">Somar</label>
+            <input type="checkbox" name="sum" id="sum"/>
+	        <label> Dado:</label>
+            <select name="value_type">
+        	    <option value="" disabled selected></option>
+	    	    <option value="mean()">Média</option>
+    		    <option value="max()" >Valor Máximo</option>
+                <option value="idxmax()" >Índice Valor Máximo</option>
+	    	    <option value="min()" >Valor Mínimo</option>
+                <option value="idxmin()" >Índice Valor Mínimo</option>
+	    	    <option value="std()" >Desvio Padrão</option>
+	        </select>            
+        </div>
+        <div class="div-form">			    
+            <input type="submit" value="Aplicar Filtro" />
+        </div>
+    </div>
+    <div>
+        <label>Filtros: {{ fields_text }}</label>        
+    </div>    
+    <div>
+        <label>Comando gerado: {{ query_text }}</label>
+    </div>
+ </form>

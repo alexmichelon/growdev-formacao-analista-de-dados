@@ -1,0 +1,90 @@
+<style>
+    .filters{
+		display: flex;
+		flex-direction: row;
+	}
+
+      
+</style>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+       $(function () {
+       var divContent = $('#filters');
+       var botaoAdicionar = $('input[data-id="1"]');
+       var i = 1;
+
+       //Ao clicar em adicionar ele cria uma linha com novos campos
+       $(botaoAdicionar).click(function () {
+           $('<div class="filter_add">\
+            <label>Coluna</label>\
+                <select name="columns[]" onchange="disabled_options(this.value)" required>\
+                    <option value="" disabled selected></option>\
+                    {% for column in database.columns: %}\
+                    <option value={{ column }}>{{column}}</option>\
+                    {% endfor %}\
+                </select>\
+                <label>Comparação</label>\
+    	        <select name="comparisions[]" required>\
+    	        	<option value="" disabled selected></option>\
+                    <option id="==" value="==">Igual</option>\
+                    <option id="!=" value="!=">Diferente</option>\
+                    <option id=">"  value=">">Maior</option>\
+                    <option id=">=" value=">=">Maior ou igual</option>\
+                    <option id="<"  value="<">Menor</option>\
+                    <option id="<=" value="<=">Menor ou igual</option>\
+                    <option id="contains" value="contains">Contém</option>\
+                    <option id="not_contains" value="not_contains">Não contém</option>\
+    	        </select>\
+                <label>Texto</label>\
+    	        <input type="text" placeholder="" name="data_search[]" required/>\
+    	        <input type="button" class="remove_added_field" value="-">\
+            </div>').appendTo(divContent);
+           $('#removehidden').remove();
+           i++;
+           $('<input type="hidden" name="field_amount" value="' + i + '" id="removehidden">').appendTo(divContent);
+       });
+
+       //Clicando em remover a linha é eliminada
+       $('#filters').on('click', '.remove_added_field', function () {
+           $(this).parents('.filter_add').remove();
+           i--;
+       });
+    })
+    $('#filters').on('click', '.reset_fields', function () {
+        $(this)[0].reset();
+    });               
+</script>
+
+<form method="POST" action="/database/search">
+    <div id="filters">
+        <label>Coluna</label> 
+        <select name="columns[]" required>
+            <option value="" disabled selected></option>
+            {% for column in database.columns: %}
+            <option value={{ column }}>{{column}}</option>
+            {% endfor %}
+        </select>                
+        <label>Comparação</label>
+        <select name="comparisions[]" required>
+            <option value="" disabled selected></option>
+            <option id="==" value="==">Igual</option>
+            <option id="!=" value="!=">Diferente</option>
+            <option id=">"  value=">">Maior</option>
+            <option id=">=" value=">=">Maior ou igual</option>
+            <option id="<"  value="<">Menor</option>
+            <option id="<=" value="<=">Menor ou igual</option>
+            <option id="contains" value="contains">Contém</option>
+            <option id="not_contains" value="not_contains">Não contém</option>
+        </select>                    
+        <label>Texto</label>
+        <input id="text" type="text" placeholder="" name="data_search[]" required/>
+        <input type="button" data-id="1" id="add_field" value="+">
+        <input id="aplicar" type="submit" value="Aplicar"/>                
+    </div>
+    <div style="margin-top: 10px;">
+        <span>Busca: </span> {{ query }}
+    </div>        
+</form>
+    
