@@ -42,6 +42,11 @@
             #formulario_agrupamento {
                 float:right;
             }
+            #div-finfos{
+                text-align: left;
+                font-size: 20px;
+                padding: 10px 10px 10px 10px;
+            }
 
         </style>
 
@@ -52,8 +57,15 @@
 
         <div class="container">
             <div id="geral">
-                <h2 class='main_title'>Base setada</h2> <p style="text-align: left; font-size: 20px;">{{name_database}}</p>
-                <span style="font-weight: bold;">Total de registros da base: </span> {{ database|length }} recuperados.
+                <div id="div-finfos">
+                    <span style="font-weight: bold;">Base setada: </span> {{ name_database }}.
+                </div>
+                <div id="div-finfos">
+                    <span style="font-weight: bold;">Total de registros da base: </span> {{ database|length }} recuperados.
+                </div>
+                <div id="div-finfos">
+                    <span style="font-weight: bold;">Total de Colunas: </span> {{ database.columns|length }}.
+                </div>
             </div>
 
             <div id="div-forms">
