@@ -8,6 +8,7 @@ versionados/
 *.docx
 *.zip
 *.csv
+*.pbix
 Avaliacao_Final_Growdev_MatEst.ipynb
 00-onboarding/
 0-orientacao_profissional/
@@ -17,3 +18,5 @@ exportados/
 enviado/
 imagem/
 arquivo/
+video/
+11-projeto-pratico-ii/
