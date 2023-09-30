@@ -17,14 +17,14 @@
 
 #### Base teste
 
-* Para teste, deverá ser executado o arquivo ([`database.sql`]https://github.com/alexmichelon/growdev-formacao-analista-de-dados/blob/alex-michelon-trabalho-final-ii/11-projeto-pratico-ii/trabalho_final/src/database/file/database.sql) em conjunto ao banco de dados MySQL. A base de dados ([NFL Statistics](https://www.kaggle.com/datasets/kendallgillies/nflstatistics/download?datasetVersionNumber=1)) foi recuperada do sítio eletrônico([`Kaggle`]https://www.kaggle.com/), onde este DataSet encontra-se em formato csv.
+* Para teste, deverá ser executado o arquivo ([`database.sql`] (https://github.com/alexmichelon/growdev-formacao-analista-de-dados/blob/alex-michelon-trabalho-final-ii/11-projeto-pratico-ii/trabalho_final/src/database/file/database.sql)) em conjunto ao banco de dados MySQL. A base de dados ([NFL Statistics](https://www.kaggle.com/datasets/kendallgillies/nflstatistics/download?datasetVersionNumber=1)) foi recuperada do sítio eletrônico([`Kaggle`](https://www.kaggle.com/)), onde este DataSet encontra-se em formato csv.
     Obs.: poderá ser utilizada qualquer based de dados provindo do banco de dados MySQL.
 
 * O endereço para acesso da aplicação é: http://127.0.0.1:8888/.
 
-* Para executar a aplicação, basta executar o arquivo ([`server.py`https://github.com/alexmichelon/growdev-formacao-analista-de-dados/blob/alex-michelon-trabalho-final-ii/11-projeto-pratico-ii/trabalho_final/src/server.py]) o qual está localizado na raíz da aplicação.
+* Para executar a aplicação, basta executar o arquivo ([`server.py`](https://github.com/alexmichelon/growdev-formacao-analista-de-dados/blob/alex-michelon-trabalho-final-ii/11-projeto-pratico-ii/trabalho_final/src/server.py)) o qual está localizado na raíz da aplicação.
 
-* Para criação do arquivo de dados ([`database.sql`]https://github.com/alexmichelon/growdev-formacao-analista-de-dados/blob/alex-michelon-trabalho-final-ii/11-projeto-pratico-ii/trabalho_final/src/database/file/database.sql), deverá ser executado o arquivo de formato notebook ([`create_database.ipynb`]https://github.com/alexmichelon/growdev-formacao-analista-de-dados/blob/alex-michelon-trabalho-final-ii/11-projeto-pratico-ii/trabalho_final/src/crate_database.ipynb).
+* Para criação do arquivo de dados ([`database.sql`](https://github.com/alexmichelon/growdev-formacao-analista-de-dados/blob/alex-michelon-trabalho-final-ii/11-projeto-pratico-ii/trabalho_final/src/database/file/database.sql)), deverá ser executado o arquivo de formato notebook ([`create_database.ipynb`](https://github.com/alexmichelon/growdev-formacao-analista-de-dados/blob/alex-michelon-trabalho-final-ii/11-projeto-pratico-ii/trabalho_final/src/crate_database.ipynb)).
 
 
 #### Pré-requisitos
