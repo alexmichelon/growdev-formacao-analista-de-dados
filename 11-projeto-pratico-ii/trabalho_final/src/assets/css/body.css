@@ -1,0 +1,53 @@
+.col {
+    display: flex;
+}
+
+.div-grafico {
+    width: 50%;
+    border-radius: 0.5em;    
+    margin-top: 0.25em;
+}
+
+.container {
+    width: 95%;
+    margin-left: 2.5%;
+    margin-top: 0.25em;
+}
+
+.div-filtros {
+    display: flex;
+    background-color: #e8e6e6;
+    border-radius: 0.25em;
+}
+
+.div-filtros-item {
+    width: 50%;
+    padding-inline: 0.5em;
+    padding: 0.25em;
+}
+
+.div-filtros-item-label {
+    text-align: center;
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.div-subfiltros {
+    display: flex;
+    background-color: #e8e6e6;
+    padding: 0.5em;
+    border-radius: 0.5em;
+}
+
+.div-subfiltros-item {
+    width: 50%;
+    padding-inline: 0.3em;
+}
+
+.div-subfiltros-item-label {
+    color: black;
+    font-weight: bold;    
+    text-align: center;
+    font-size: 14px;
+    font-family: Verdana;
+}
