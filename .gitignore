@@ -9,7 +9,6 @@ versionados/
 *.zip
 *.csv
 *.pbix
-*.sql
 Avaliacao_Final_Growdev_MatEst.ipynb
 00-onboarding/
 0-orientacao_profissional/

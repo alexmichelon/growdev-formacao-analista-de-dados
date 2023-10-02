@@ -15,14 +15,18 @@ class Data:
     join_column = 'player_id'
     reference_column = 'name'
     global_column_1 = 'current_team'
+    global_column_1_label = 'Teams'
+    global_column_2_label = 'Positions'
     global_column_2 = 'position' 
     value = 0
-    erros='ignore'     
+    erros='ignore'
+         
     
     engine = connection()
     
-    df_db, df_tables = mdb.generate_df_db(engine, table_schema, join_column, value, erros)
-    df = df_db   
+    df_db, df_tables = mdb.generate_df_db(engine, table_schema, join_column, value, erros, reference_column)
+    df = df_db
+
     numerics = ['int16', 'int32', 'int64', 'float16', 'float32', 'float64']
     df_numeric = df.select_dtypes(include=numerics)
     

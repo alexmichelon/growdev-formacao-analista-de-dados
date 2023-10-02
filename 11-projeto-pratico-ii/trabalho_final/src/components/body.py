@@ -23,7 +23,7 @@ class Body:
                                             children=[
                                                 #Label Global Filter 1
                                                 H4(
-                                                    'Teams',
+                                                    Data.global_column_1_label,
                                                     style={'color': 'black'},
                                                     className='div-filtros-item-label',
                                                 ),
@@ -46,7 +46,7 @@ class Body:
                                             children=[
                                                 #Label Global Filter 2
                                                 H4(
-                                                    'Position',
+                                                    Data.global_column_2_label,
                                                     style={'color': 'black'},
                                                     className='div-filtros-item-label',
                                                 ),

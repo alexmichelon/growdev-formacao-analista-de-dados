@@ -28,7 +28,8 @@ class ScatterChart:
                 title = f'<b>{str(x_column).replace("_", " ").title()} x {str(y_column).replace("_", " ").title()} <br> Bubble Size: {str(size).replace("_", " ").title()}</b>', #título do gráfico
                 color=Data.reference_column, #coluna para determinar a cor das bolhas do gráfico
                 color_discrete_sequence=color.color_cividis, #define cor discreta (int, float)
-                color_continuous_scale=color.color_scale_cividis #define cor discreta (str)
+                color_continuous_scale=color.color_scale_cividis, #define cor discreta (str)
+                opacity=0.75
             )
             fig.update_layout(
                 title_x=0.5, 
@@ -36,4 +37,7 @@ class ScatterChart:
                 yaxis_title=f'<b>{str(y_column).replace("_", " ").title()}</b>', #texto do eixo Y
                 #legend=dict(orientation='h', yanchor='bottom', xanchor='left', y=-0.35) #define a posição da legenda
             )
+            fig.update_traces(
+                marker=dict(line=dict(width=1,color='black')),
+                selector=dict(mode='markers'))
             return fig

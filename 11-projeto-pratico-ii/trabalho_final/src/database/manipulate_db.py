@@ -93,7 +93,7 @@ def replace_values_in_df_db(connection, table, where_clausule, new_values, value
     return df #retorno DataFrame
 
 #função que gera um DataFrame com base em tabelas do schema/banco de dados
-def generate_df_db(connection, table_schema, join_column, value, erros):
+def generate_df_db(connection, table_schema, join_column, value, erros, reference_column):
     df_tables_names = return_db_tables_name(connection, table_schema) #função que retorna o nome das tabelas do banco de dados
     df = pd.DataFrame() #cria um DataFrame vazio
     for table in df_tables_names['TABLE_NAME']: #lê o nome de uma tabela no DataFrame que tem todos os nomes de tabelas do schema/banco de dados
@@ -106,4 +106,5 @@ def generate_df_db(connection, table_schema, join_column, value, erros):
             df = pd.merge(df, df_table, how='outer', on=join_column, suffixes=('', '_remove')) #une o DataFrame existente com o DataFrame com os dados da última tabela buscada
             df.drop([i for i in df.columns if 'remove' in i], axis=1, inplace=True) #remove do DataFrame as colunas duplicadas
     df = convert_columns_to_numeric(df, value, erros) #substitui valores nulos e converte colunas em tipo numérico
+    df = df.drop_duplicates(subset=reference_column, keep='first') #elimina do Pandas DataFrame os registros duplicados
     return df, df_tables_names #retorna DataFrame contendo os dados do banco e outro DataFrame com os nomes das tabelas do schema/banco de dados

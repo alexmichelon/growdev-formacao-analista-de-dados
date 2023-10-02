@@ -7,7 +7,7 @@ color_discrete_Antique = px.colors.qualitative.Antique
 
 #cores escalares
 color_scale_cividis = 'Cividis'
-color_cividis = ['#004080', '#0059b3', '#666699', '#8585ad', '#b8b894', '#ffff00']
+color_cividis = ['#004080', '#0059b3', '#ffff00', '#666699', '#8585ad', '#b8b894']
 
 #função para apresentar os tipos de cores qualitativas
 def show_qualitative_colors():

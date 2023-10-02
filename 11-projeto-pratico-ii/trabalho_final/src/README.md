@@ -1,8 +1,8 @@
 ### Trabalho Prático II
 
-* Este aplicativo é um visualizador de dados utilizando gráficos que carregam dados oriundos de base de dados do banco MySQL. Os gráficos são gerados utilizando a biblioteca Express do Plotly e utilizando a linguagem Python.
+* Este aplicativo é um visualizador de dados utilizando gráficos que carregam dados oriundos de base de dados do banco MySQL. Os gráficos são gerados utilizando as bibliotecas Express do Plotly e Dash, implementados com a linguagem Python.
 
-* O servidor é construido com a biblioteca Dash.
+* O servidor é construido com a biblioteca Flask.
 
 * Foram implementadas funções do tipo:
     * Ler endereço do computador em que existam arquivos de dados de determinada extensão;
